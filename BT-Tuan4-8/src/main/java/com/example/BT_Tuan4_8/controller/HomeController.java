@@ -23,7 +23,7 @@ public class HomeController {
 
     {
 
-        model.addAttribute( "Listcourse", courseService.GetAll());
+        model.addAttribute( "listcourse", courseService.GetAll());
 
         return "home";
 
