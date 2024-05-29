@@ -16,7 +16,9 @@
 <nav class="navbar bg-dark" data-bs-theme="dark">
     <div>
         <a class="navbar-brand" th:href="@{/home}">Home</a>
-        <a class="navbar-brand" th:href="@{/course/create}">Add Course</a>
+        <a class="navbar-brand" th:href="@{/course/add}">Add Course</a>
+        <input type="text" id="searchInput" placeholder="Search by name">
+        <button onclick="searchProducts()">Search</button>
     </div>
 </nav>
 <div layout:fragment="content" class="container body-content">
@@ -27,3 +29,24 @@
 </div>
 </body>
 </html>
+<script>
+    function searchProducts() {
+        var searchInput = document.getElementById("searchInput");
+        var searchTerm = searchInput.value.toLowerCase();
+        var productRows = document.getElementsByTagName("tr");
+
+        for (var i = 1; i < productRows.length; i++) {
+            var nameCell = productRows[i].getElementsByTagName("td")[1];
+            var productName = nameCell.textContent.toLowerCase();
+
+             var otherCell = productRows[i].getElementsByTagName("td")[3];
+             var otherValue = otherCell.textContent.toLowerCase();
+
+            if (productName.includes(searchTerm)  || otherValue.includes(searchTerm)) {
+                productRows[i].style.display = "";
+            } else {
+                productRows[i].style.display = "none";
+            }
+        }
+    }
+</script>

@@ -1,65 +1,35 @@
 package com.example.BT_Tuan4_8.model;
 
+
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+
 import java.time.LocalDate;
 
+@Setter
+@Getter
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name ="courses")
 public class Course {
-
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank(message = "Ten Giao vien khong duoc de trong")
+    @Length(max = 100, message = "Ten giao viên khong duoc vuot qua 100 ky tu")
     private String lectureName;
+    @NotBlank(message = "Dia chi khong duoc de trong")
     private String place;
+    @FutureOrPresent(message = "Ngay bat dau phai lon hon hoac bang ngay hien tai")
     private LocalDate startDate;
 
-    public Course(int id, String lectureName, String place, LocalDate startDate) {
-	//contractor
-        this.id = id;
-        this.lectureName = lectureName;
-        this.place = place;
-        this.startDate = startDate;
-    }
 
-    public Course() {
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLectureName() {
-        return lectureName;
-    }
-
-    public void setLectureName(String lectureName) {
-        this.lectureName = lectureName;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", lectureName='" + lectureName + '\'' +
-                ", place='" + place + '\'' +
-                ", startDate=" + startDate +
-                '}';
-    }
 }
