@@ -10,6 +10,7 @@ public class Course {
     private LocalDate startDate;
 
     public Course(int id, String lectureName, String place, LocalDate startDate) {
+	//contractor
         this.id = id;
         this.lectureName = lectureName;
         this.place = place;
